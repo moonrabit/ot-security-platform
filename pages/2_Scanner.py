@@ -2,6 +2,10 @@
 Módulo 2: Escáner Pasivo de Protocolos Industriales.
 Analiza capturas PCAP o tráfico en vivo para detectar vulnerabilidades en protocolos OT.
 """
+from auth import require_auth
+
+require_auth()
+
 import streamlit as st
 import tempfile
 import os

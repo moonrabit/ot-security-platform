@@ -2,6 +2,10 @@
 Módulo 4: Generación de Informe PDF.
 Exporta el informe completo de evaluación de seguridad OT.
 """
+from auth import require_auth
+
+require_auth()
+
 import streamlit as st
 from datetime import datetime
 

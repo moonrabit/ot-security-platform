@@ -2,6 +2,10 @@
 Módulo 3: Roadmap de Mejora.
 Gap analysis combinado + plan de mejora priorizado alineado a IEC 62443, Purdue y NIST CSF.
 """
+from auth import require_auth
+
+require_auth()
+
 import streamlit as st
 import pandas as pd
 

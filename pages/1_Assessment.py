@@ -2,6 +2,10 @@
 Módulo 1: Assessment IEC 62443
 Cuestionario estructurado por FR con diseño de zonas/conduits.
 """
+from auth import require_auth
+
+require_auth()
+
 import streamlit as st
 import uuid
 from datetime import datetime

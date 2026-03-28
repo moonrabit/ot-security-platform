@@ -5,6 +5,7 @@ Main entry point for the Streamlit multi-page application.
 import streamlit as st
 import os
 from db.database import init_db
+from auth import login_wall, logout, current_user
 
 st.set_page_config(
     page_title="OT Security Assessment Platform",
@@ -13,8 +14,17 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# ─── Auth gate ────────────────────────────────────────────────────────────────
+login_wall()
+
 # Initialize DB on first run
 init_db()
+
+# Logout button in sidebar
+with st.sidebar:
+    st.caption(f"👤 {current_user()}")
+    if st.button("Cerrar sesión", use_container_width=True):
+        logout()
 
 # Bootstrap session state
 if "session_id" not in st.session_state:
