@@ -30,7 +30,7 @@ def login_wall() -> None:
     _, col, _ = st.columns([1, 1.2, 1])
     with col:
         st.markdown("<br><br>", unsafe_allow_html=True)
-        st.markdown("## 🏭 OT Security Platform")
+        st.markdown("## OT Security Platform")
         st.markdown("---")
 
         with st.form("login_form", clear_on_submit=False):
