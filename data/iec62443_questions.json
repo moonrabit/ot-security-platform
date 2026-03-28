@@ -1,0 +1,1220 @@
+[
+  {
+    "question_id": "FR1-SR1.1",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.1",
+    "sr_title": "Human user identification and authentication",
+    "text": "¿Se identifican y autentican todos los usuarios humanos antes de permitirles acceso al IACS?",
+    "guidance": "Verificar: cuentas individuales por usuario, sin credenciales compartidas, política de contraseñas activa.",
+    "sl_relevance": {
+      "1": "Autenticación básica por contraseña obligatoria",
+      "2": "MFA requerido para acceso privilegiado",
+      "3": "MFA requerido para todo acceso, tokens de hardware",
+      "4": "MFA + análisis de comportamiento"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.1",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Política de contraseñas documentada",
+      "Lista de usuarios con roles y privilegios"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.2",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.2",
+    "sr_title": "Software process and device identification and authentication",
+    "text": "¿Se identifican y autentican los procesos de software y dispositivos antes de conectarse al IACS?",
+    "guidance": "Incluye PLCs, RTUs, servidores OPC, historiadores. Verificar certificados digitales o claves precompartidas.",
+    "sl_relevance": {
+      "1": "Identificación de dispositivos básica (ej. VLAN por función)",
+      "2": "Autenticación de dispositivos mediante PKI o PSK",
+      "3": "Certificados por dispositivo, rotación periódica",
+      "4": "PKI completa con revocación en tiempo real"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.2",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Inventario de dispositivos con método de autenticación",
+      "Configuración de PKI o PSK si aplica"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.3",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.3",
+    "sr_title": "Account management",
+    "text": "¿Existe un proceso formal de gestión de cuentas (alta, baja, revisión periódica de accesos)?",
+    "guidance": "Verificar: proceso de offboarding, revisión semestral de cuentas activas, cuentas de ex-empleados deshabilitadas.",
+    "sl_relevance": {
+      "1": "Proceso manual documentado",
+      "2": "Revisión periódica de cuentas (al menos anual)",
+      "3": "Revisión trimestral con evidencia registrada",
+      "4": "Revisión continua automatizada"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.3",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Procedimiento de gestión de cuentas",
+      "Registro de última revisión de cuentas"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.4",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.4",
+    "sr_title": "Identifier management",
+    "text": "¿Se gestionan identificadores únicos para usuarios, grupos, roles y dispositivos?",
+    "guidance": "Sin cuentas genéricas (ej. 'admin', 'operator' compartidas). Cada persona = una cuenta.",
+    "sl_relevance": {
+      "1": "IDs únicos para usuarios humanos",
+      "2": "IDs únicos para usuarios y dispositivos críticos",
+      "3": "IDs únicos para todos los activos del IACS",
+      "4": "Gestión centralizada con auditoría"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.3",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Política de naming de cuentas",
+      "Evidencia de eliminación de cuentas genéricas"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.5",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.5",
+    "sr_title": "Authenticator management",
+    "text": "¿Se protegen, gestionan y rotan los autenticadores (contraseñas, certificados, claves)?",
+    "guidance": "Longitud mínima 12 caracteres, sin contraseñas por defecto, rotación obligatoria.",
+    "sl_relevance": {
+      "1": "Política de contraseñas básica",
+      "2": "Rotación forzada, historial de contraseñas",
+      "3": "Almacenamiento seguro (vault), no hardcoded",
+      "4": "HSM para claves críticas"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.4",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Política de contraseñas vigente",
+      "Evidencia de cambio de contraseñas por defecto en HMI/PLCs"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.6",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.6",
+    "sr_title": "Wireless access management",
+    "text": "¿Se gestionan y controlan los accesos inalámbricos al IACS (WiFi, Bluetooth, WirelessHART, ISA100)?",
+    "guidance": "Segmentación WiFi industrial, autenticación WPA2-Enterprise o WPA3, deshabilitado si no se usa.",
+    "sl_relevance": {
+      "1": "WiFi OT separado del corporativo",
+      "2": "WPA2-Enterprise con autenticación por certificado",
+      "3": "802.1X + monitoreo de puntos de acceso no autorizados",
+      "4": "Detección activa de rogue AP"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-3",
+    "nist_sp800_82_ref": "6.2.8",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Inventario de puntos de acceso inalámbrico",
+      "Configuración de autenticación WiFi"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.7",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.7",
+    "sr_title": "Strength of password-based authentication",
+    "text": "¿Las contraseñas del IACS cumplen requisitos mínimos de complejidad (longitud, caracteres especiales)?",
+    "guidance": "Mínimo 12 caracteres, mayúsculas, minúsculas, números y caracteres especiales. Bloqueo tras intentos fallidos.",
+    "sl_relevance": {
+      "1": "Longitud mínima 8, complejidad básica",
+      "2": "Longitud mínima 12, bloqueo tras 5 intentos",
+      "3": "Longitud 15+, bloqueo tras 3 intentos, captcha",
+      "4": "Autenticación sin contraseña (certificate-based)"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.4",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Política de complejidad de contraseñas aplicada en HMI/SCADA",
+      "Configuración de bloqueo de cuenta"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.8",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.8",
+    "sr_title": "Public key infrastructure certificates",
+    "text": "¿Se utiliza infraestructura de clave pública (PKI) para la autenticación en el IACS?",
+    "guidance": "Certificados X.509 para servidores OPC-UA, VPN, acceso remoto. CA interna o comercial.",
+    "sl_relevance": {
+      "1": "N/A para SL1",
+      "2": "PKI para acceso remoto",
+      "3": "PKI para comunicaciones OT críticas",
+      "4": "PKI completa para todos los componentes"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.5",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Inventario de certificados digitales",
+      "Procedimiento de renovación de certificados"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.9",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.9",
+    "sr_title": "Strength of public key authentication",
+    "text": "¿Los certificados digitales utilizan algoritmos y longitudes de clave actuales (RSA 2048+ o ECC 256+)?",
+    "guidance": "RSA mínimo 2048 bits, preferir 4096. ECC P-256 o superior. SHA-256 para hash.",
+    "sl_relevance": {
+      "1": "N/A",
+      "2": "RSA 2048 / SHA-256",
+      "3": "RSA 4096 o ECC P-256",
+      "4": "Algoritmos post-quantum ready"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-2",
+    "nist_sp800_82_ref": "6.2.5",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Listado de certificados con algoritmo y longitud de clave"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.10",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.10",
+    "sr_title": "Authenticator feedback",
+    "text": "¿El sistema oculta la información de autenticación durante el proceso de login (ej. contraseña enmascarada)?",
+    "guidance": "Contraseñas nunca visibles en pantalla, logs o mensajes de error.",
+    "sl_relevance": {
+      "1": "Contraseña enmascarada en pantalla",
+      "2": "Sin revelación en logs ni mensajes de error",
+      "3": "Auditoría de accesos a logs",
+      "4": "SIEM con alertas sobre acceso a datos de autenticación"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-1",
+    "nist_sp800_82_ref": "6.2.4",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Captura de pantalla de pantalla de login HMI/SCADA"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.11",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.11",
+    "sr_title": "Remote session termination",
+    "text": "¿El IACS termina automáticamente las sesiones remotas después de un período de inactividad?",
+    "guidance": "Timeout configurado en HMI, SCADA, acceso remoto VPN. Máximo 15 minutos para sistemas críticos.",
+    "sl_relevance": {
+      "1": "Timeout configurado (ej. 30 min)",
+      "2": "Timeout ≤ 15 min para sistemas críticos",
+      "3": "Timeout ≤ 5 min + re-autenticación",
+      "4": "Timeout dinámico basado en riesgo"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-3",
+    "nist_sp800_82_ref": "6.2.7",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Configuración de timeout en HMI/SCADA",
+      "Política de sesiones remotas"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.12",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.12",
+    "sr_title": "Remote access via untrusted networks",
+    "text": "¿Se controla y asegura el acceso remoto al IACS desde redes no confiables (Internet, red corporativa)?",
+    "guidance": "VPN con MFA para acceso remoto. Acceso Jump Server/Bastion host. Sin RDP/VNC directo desde Internet.",
+    "sl_relevance": {
+      "1": "VPN básica para acceso remoto",
+      "2": "VPN + MFA, sin acceso directo desde Internet",
+      "3": "Jump server con grabación de sesiones",
+      "4": "Zero Trust Architecture para acceso OT"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-3",
+    "nist_sp800_82_ref": "6.2.7",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Diagrama de arquitectura de acceso remoto",
+      "Política de acceso remoto",
+      "Registros de acceso remoto de proveedores"
+    ]
+  },
+  {
+    "question_id": "FR1-SR1.13",
+    "fr_number": 1,
+    "fr_name": "Identification & Authentication Control",
+    "sr_ref": "SR 1.13",
+    "sr_title": "Access via untrusted networks – enhanced",
+    "text": "¿Se registran y auditan todos los accesos remotos al IACS, incluyendo los de proveedores/terceros?",
+    "guidance": "Log de todos los accesos remotos con usuario, timestamp, duración y acciones realizadas.",
+    "sl_relevance": {
+      "1": "Log básico de conexiones VPN",
+      "2": "Log de acciones en sesión remota",
+      "3": "Grabación de sesión (screen recording)",
+      "4": "SIEM con correlación en tiempo real"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.CM-1",
+    "nist_sp800_82_ref": "6.2.7",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Muestra de logs de acceso remoto",
+      "Política de acceso de terceros/proveedores"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.1",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.1",
+    "sr_title": "Authorization enforcement",
+    "text": "¿El IACS aplica restricciones de autorización para todos los usuarios según el principio de mínimo privilegio?",
+    "guidance": "Verificar RBAC en HMI/SCADA. Operadores no pueden cambiar configuración de PLCs. Ingenieros sin acceso a sistemas de seguridad funcional.",
+    "sl_relevance": {
+      "1": "Roles diferenciados (operador vs ingeniero vs admin)",
+      "2": "RBAC granular por función",
+      "3": "Segregación de funciones estricta, aprobación dual para cambios críticos",
+      "4": "Control de acceso basado en atributos (ABAC)"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-4",
+    "nist_sp800_82_ref": "6.2.10",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Matriz de roles y permisos",
+      "Configuración RBAC en SCADA/HMI"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.2",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.2",
+    "sr_title": "Wireless use control",
+    "text": "¿Se controla el uso de dispositivos inalámbricos dentro del perímetro del IACS?",
+    "guidance": "Política de dispositivos inalámbricos, detección de rogue devices, inventario de dispositivos autorizados.",
+    "sl_relevance": {
+      "1": "Política documentada de uso inalámbrico",
+      "2": "Inventario de dispositivos autorizados + detección de no autorizados",
+      "3": "NAC inalámbrico (Network Access Control)",
+      "4": "Monitoreo continuo con alertas automáticas"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-3",
+    "nist_sp800_82_ref": "6.2.11",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Política de uso de dispositivos inalámbricos",
+      "Inventario de dispositivos WiFi/BT en planta"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.3",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.3",
+    "sr_title": "Use of portable and mobile devices",
+    "text": "¿Se controla el uso de dispositivos portátiles (laptops, USB, tablets) en la red OT?",
+    "guidance": "Política de medios removibles, escaneo antimalware de USB antes de conectar, inventario de laptops de ingeniería.",
+    "sl_relevance": {
+      "1": "Política documentada de medios removibles",
+      "2": "Escaneo de USB previo a conexión + registro",
+      "3": "USB bloqueados por defecto, whitelist de dispositivos aprobados",
+      "4": "DLP (Data Loss Prevention) + cifrado de medios"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.PT-3",
+    "nist_sp800_82_ref": "6.2.11",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Política de medios removibles",
+      "Procedimiento de escaneo de USB en planta"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.4",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.4",
+    "sr_title": "Mobile code",
+    "text": "¿Se controla la ejecución de código móvil (scripts, macros, ActiveX) en los sistemas del IACS?",
+    "guidance": "Whitelist de aplicaciones en HMI/SCADA. Sin macros Office en estaciones OT. AppLocker o equivalente.",
+    "sl_relevance": {
+      "1": "Sin macros no autorizadas en estaciones OT",
+      "2": "Application whitelisting básico",
+      "3": "Application whitelisting estricto (AppLocker, CarbonBlack)",
+      "4": "Whitelisting + sandboxing de código externo"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.PT-3",
+    "nist_sp800_82_ref": "6.2.11",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración de application whitelist",
+      "Política de software autorizado en OT"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.5",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.5",
+    "sr_title": "Session lock",
+    "text": "¿Las estaciones del IACS bloquean la sesión automáticamente tras un período de inactividad?",
+    "guidance": "Screensaver con contraseña. Máximo 10 minutos para HMI, 5 minutos para estaciones de ingeniería.",
+    "sl_relevance": {
+      "1": "Bloqueo de sesión configurado (cualquier tiempo)",
+      "2": "Bloqueo ≤ 10 min en estaciones críticas",
+      "3": "Bloqueo ≤ 5 min + notificación de bloqueo",
+      "4": "Bloqueo ≤ 2 min + re-autenticación biométrica"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-4",
+    "nist_sp800_82_ref": "6.2.3",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración de screensaver/bloqueo en estaciones OT"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.6",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.6",
+    "sr_title": "Remote session termination",
+    "text": "¿El IACS permite a usuarios autorizados terminar sesiones remotas activas de otros usuarios?",
+    "guidance": "Capacidad administrativa de desconectar sesiones remotas activas (ej. de proveedores).",
+    "sl_relevance": {
+      "1": "Capacidad de terminar sesiones desde consola",
+      "2": "Herramienta de gestión de sesiones activas",
+      "3": "Terminación automática por anomalía detectada",
+      "4": "Terminación en tiempo real con alerta SIEM"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-3",
+    "nist_sp800_82_ref": "6.2.7",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Procedimiento para terminar sesiones remotas no autorizadas"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.7",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.7",
+    "sr_title": "Concurrent session control",
+    "text": "¿El IACS limita el número de sesiones concurrentes por usuario/rol?",
+    "guidance": "Un operador = una sesión activa. Previene compartir credenciales.",
+    "sl_relevance": {
+      "1": "Sin límite definido (solo documentado)",
+      "2": "Límite de sesiones concurrentes configurado",
+      "3": "Alerta al superar límite + auditoría",
+      "4": "Bloqueo automático de segunda sesión"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-4",
+    "nist_sp800_82_ref": "6.2.3",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración de sesiones concurrentes en SCADA/HMI"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.8",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.8",
+    "sr_title": "Auditable events",
+    "text": "¿El IACS registra eventos auditables (login, logout, cambios de configuración, alarmas de seguridad)?",
+    "guidance": "Log de: autenticaciones (exitosas y fallidas), cambios de configuración en PLCs/SCADA, accesos a datos de proceso.",
+    "sl_relevance": {
+      "1": "Log de login/logout exitosos",
+      "2": "Log de eventos de seguridad (intentos fallidos, cambios config)",
+      "3": "Log completo de eventos + sincronización NTP",
+      "4": "SIEM con correlación de eventos OT"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-1",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Muestra de logs de eventos de seguridad",
+      "Configuración de logging en HMI/SCADA/PLCs"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.9",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.9",
+    "sr_title": "Audit storage capacity",
+    "text": "¿El sistema de logging del IACS tiene capacidad suficiente y protección contra pérdida de logs?",
+    "guidance": "Retención mínima 90 días. Alerta cuando el almacenamiento esté al 80%. Backup de logs offsite.",
+    "sl_relevance": {
+      "1": "Retención ≥ 30 días",
+      "2": "Retención ≥ 90 días + alerta de capacidad",
+      "3": "Retención ≥ 1 año + backup + inmutabilidad",
+      "4": "Log inmutable + SIEM con retención ≥ 3 años"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-1",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Política de retención de logs",
+      "Configuración de almacenamiento de logs"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.10",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.10",
+    "sr_title": "Response to audit processing failures",
+    "text": "¿El IACS detecta y alerta cuando el sistema de auditoría/logging falla?",
+    "guidance": "Alerta si el servicio de logging se detiene. Acción definida si el almacenamiento se llena.",
+    "sl_relevance": {
+      "1": "Monitoreo manual del estado del logging",
+      "2": "Alerta automática si logging falla",
+      "3": "Acción automática (ej. detener operaciones no críticas)",
+      "4": "Respuesta automatizada + notificación SIEM"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-1",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración de monitoreo del servicio de logging"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.11",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.11",
+    "sr_title": "Timestamps",
+    "text": "¿El IACS utiliza marcas de tiempo precisas y sincronizadas (NTP) en todos los eventos registrados?",
+    "guidance": "NTP configurado en todos los componentes. Fuente de tiempo confiable (GPS o servidor NTP stratum 1).",
+    "sl_relevance": {
+      "1": "NTP configurado con servidor interno",
+      "2": "NTP sincronizado, desviación < 1 segundo",
+      "3": "NTP redundante, monitoreo de deriva",
+      "4": "GPS time reference + monitoreo continuo"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-1",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración NTP en componentes OT",
+      "Evidencia de sincronización de tiempo"
+    ]
+  },
+  {
+    "question_id": "FR2-SR2.12",
+    "fr_number": 2,
+    "fr_name": "Use Control",
+    "sr_ref": "SR 2.12",
+    "sr_title": "Non-repudiation",
+    "text": "¿El IACS proporciona evidencia suficiente para que un usuario no pueda negar haber realizado una acción?",
+    "guidance": "Firmas digitales en logs críticos, certificados de usuario para acciones sensibles.",
+    "sl_relevance": {
+      "1": "N/A para SL1",
+      "2": "Log de usuario + acción + timestamp",
+      "3": "Firma digital de acciones críticas",
+      "4": "Cadena de custodia digital completa"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-1",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Mecanismo de no repudio en sistemas críticos"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.1",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.1",
+    "sr_title": "Communication integrity",
+    "text": "¿El IACS verifica la integridad de las comunicaciones para detectar modificaciones no autorizadas?",
+    "guidance": "Checksums, MACs o firmas digitales en protocolos críticos. Detección de tampering en mensajes.",
+    "sl_relevance": {
+      "1": "Integridad básica en protocolos que lo soportan",
+      "2": "Verificación de integridad en comunicaciones críticas",
+      "3": "MACs o firmas en todas las comunicaciones OT",
+      "4": "Verificación criptográfica end-to-end"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-6",
+    "nist_sp800_82_ref": "6.2.13",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Configuración de integridad en protocolos OT (ej. DNP3 SA v5)"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.2",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.2",
+    "sr_title": "Protection from malicious code",
+    "text": "¿El IACS está protegido contra software malicioso (antimalware, application whitelisting)?",
+    "guidance": "Antivirus/antimalware actualizado en estaciones OT Windows. Application whitelisting donde antivirus no aplique.",
+    "sl_relevance": {
+      "1": "Antimalware instalado y actualizado",
+      "2": "Antimalware + escaneo periódico programado",
+      "3": "Application whitelisting en sistemas críticos",
+      "4": "Whitelisting + monitoreo de integridad de archivos (FIM)"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "DE.CM-4",
+    "nist_sp800_82_ref": "6.2.14",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Estado de antimalware en estaciones OT",
+      "Política de actualización de firmas",
+      "Configuración de application whitelisting"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.3",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.3",
+    "sr_title": "Security functionality verification",
+    "text": "¿Se verifica periódicamente que las funciones de seguridad del IACS operan correctamente?",
+    "guidance": "Pruebas periódicas de firewalls, IDS, autenticación, logging. Pruebas de penetración anuales.",
+    "sl_relevance": {
+      "1": "Verificación manual anual de funciones de seguridad",
+      "2": "Pruebas periódicas documentadas (semestrales)",
+      "3": "Pruebas de penetración anuales + continuous monitoring",
+      "4": "Red team exercises + continuous automated testing"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-1",
+    "nist_sp800_82_ref": "6.2.15",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Informe de última prueba de seguridad",
+      "Calendario de pruebas de seguridad planificadas"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.4",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.4",
+    "sr_title": "Software and information integrity",
+    "text": "¿Se verifica la integridad del software del IACS antes de instalarlo o actualizarlo?",
+    "guidance": "Verificación de hash/firma del proveedor antes de instalar parches o firmware. Lista blanca de software.",
+    "sl_relevance": {
+      "1": "Descarga de parches solo desde sitios oficiales",
+      "2": "Verificación de hash de parches antes de instalar",
+      "3": "Firma digital del proveedor verificada + testing en ambiente de prueba",
+      "4": "Secure boot + medición de integridad de firmware"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-6",
+    "nist_sp800_82_ref": "6.2.14",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Procedimiento de gestión de parches en OT",
+      "Registro de verificación de integridad de últimas actualizaciones"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.5",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.5",
+    "sr_title": "Input validation",
+    "text": "¿El IACS valida las entradas de datos para prevenir inyecciones de comandos o datos maliciosos?",
+    "guidance": "Validación de rangos en HMI, sanitización de entradas en interfaces web/API del IACS.",
+    "sl_relevance": {
+      "1": "Validación básica de rangos en HMI",
+      "2": "Validación de tipos y rangos en todas las interfaces",
+      "3": "Listas blancas de entradas válidas",
+      "4": "Validación formal con análisis de modelo"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-3",
+    "nist_sp800_82_ref": "6.2.13",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Revisión de validación de entradas en HMI/aplicaciones OT"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.6",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.6",
+    "sr_title": "Deterministic output",
+    "text": "¿El IACS produce salidas deterministas y predecibles ante condiciones normales y de error?",
+    "guidance": "Estado seguro definido ante fallos. Fail-safe configurado en PLCs/DCS.",
+    "sl_relevance": {
+      "1": "Comportamiento de fallo definido documentado",
+      "2": "Estado seguro configurado en controladores",
+      "3": "Pruebas de comportamiento determinista documentadas",
+      "4": "Verificación formal de comportamiento"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-3",
+    "nist_sp800_82_ref": "6.2.13",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Documentación de estado seguro ante fallos por zona/proceso"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.7",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.7",
+    "sr_title": "Error handling",
+    "text": "¿El IACS maneja los errores de forma que no exponga información sensible ni cause fallos en cascada?",
+    "guidance": "Mensajes de error genéricos hacia usuarios. Sin stack traces en HMI. Fallos conteneridos.",
+    "sl_relevance": {
+      "1": "Manejo básico de excepciones documentado",
+      "2": "Errores no revelan información interna del sistema",
+      "3": "Testing de manejo de errores + recuperación automática",
+      "4": "Análisis de árbol de fallos + pruebas de resiliencia"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-3",
+    "nist_sp800_82_ref": "6.2.13",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Revisión de mensajes de error en interfaces OT"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.8",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.8",
+    "sr_title": "Session integrity",
+    "text": "¿El IACS protege la integridad de las sesiones de comunicación contra secuestro (session hijacking)?",
+    "guidance": "Session tokens aleatorios, TLS para sesiones remotas, tokens CSRF en interfaces web.",
+    "sl_relevance": {
+      "1": "TLS para sesiones remotas",
+      "2": "Session IDs aleatorios + timeout",
+      "3": "Protección anti-CSRF + fijación de sesión",
+      "4": "Verificación criptográfica de integridad de sesión"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-6",
+    "nist_sp800_82_ref": "6.2.13",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Configuración de TLS en interfaces web del IACS"
+    ]
+  },
+  {
+    "question_id": "FR3-SR3.9",
+    "fr_number": 3,
+    "fr_name": "System Integrity",
+    "sr_ref": "SR 3.9",
+    "sr_title": "Protection of audit information",
+    "text": "¿Los registros de auditoría están protegidos contra modificación o eliminación no autorizada?",
+    "guidance": "Logs centralizados en servidor separado. Control de acceso a logs. Sin posibilidad de que el administrador local borre logs.",
+    "sl_relevance": {
+      "1": "Logs en sistema separado al auditado",
+      "2": "Control de acceso a logs + respaldo",
+      "3": "Logs inmutables (WORM) + firma digital",
+      "4": "Cadena de custodia + notaría digital"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-6",
+    "nist_sp800_82_ref": "6.2.12",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Arquitectura de logging centralizado",
+      "Control de acceso a sistema de logs"
+    ]
+  },
+  {
+    "question_id": "FR4-SR4.1",
+    "fr_number": 4,
+    "fr_name": "Data Confidentiality",
+    "sr_ref": "SR 4.1",
+    "sr_title": "Information confidentiality",
+    "text": "¿Se protege la confidencialidad de la información sensible del IACS en canales de comunicación?",
+    "guidance": "Cifrado de comunicaciones: TLS 1.2+ para HTTPS, SSH en lugar de Telnet, cifrado VPN. Protocolos OT sin cifrado nativo requieren túnel.",
+    "sl_relevance": {
+      "1": "Sin Telnet/FTP. SSH básico para admin",
+      "2": "TLS en todas las interfaces de gestión",
+      "3": "Cifrado en tránsito para comunicaciones OT críticas",
+      "4": "Cifrado end-to-end para todos los flujos OT"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-2",
+    "nist_sp800_82_ref": "6.2.16",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Inventario de protocolos de comunicación por zona",
+      "Configuración de cifrado en interfaces de gestión"
+    ]
+  },
+  {
+    "question_id": "FR4-SR4.2",
+    "fr_number": 4,
+    "fr_name": "Data Confidentiality",
+    "sr_ref": "SR 4.2",
+    "sr_title": "Information persistence",
+    "text": "¿Se protege la confidencialidad de datos almacenados en el IACS (bases de datos, archivos de configuración)?",
+    "guidance": "Cifrado de disco en estaciones OT con datos sensibles. Cifrado de backups.",
+    "sl_relevance": {
+      "1": "Datos de configuración con control de acceso",
+      "2": "Cifrado de backups + datos sensibles en reposo",
+      "3": "Cifrado de disco completo en estaciones críticas",
+      "4": "Cifrado con HSM + protección de claves"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-1",
+    "nist_sp800_82_ref": "6.2.16",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Estado de cifrado de backups OT",
+      "Política de cifrado de datos en reposo"
+    ]
+  },
+  {
+    "question_id": "FR4-SR4.3",
+    "fr_number": 4,
+    "fr_name": "Data Confidentiality",
+    "sr_ref": "SR 4.3",
+    "sr_title": "Use of cryptography",
+    "text": "¿El IACS utiliza algoritmos criptográficos estándar y reconocidos (no algoritmos propietarios o débiles)?",
+    "guidance": "AES-256 para cifrado simétrico. RSA 2048+/ECC P-256 para asimétrico. SHA-256+ para hash. Sin DES, RC4, MD5.",
+    "sl_relevance": {
+      "1": "Sin algoritmos obviamente débiles (DES, RC4, MD5)",
+      "2": "AES-128 mínimo, SHA-256 mínimo",
+      "3": "AES-256, SHA-256, RSA 2048+ / ECC P-256",
+      "4": "Suite criptográfica aprobada por NIST + plan de migración post-quantum"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-2",
+    "nist_sp800_82_ref": "6.2.16",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Inventario de algoritmos criptográficos en uso",
+      "Configuración de cipher suites en TLS"
+    ]
+  },
+  {
+    "question_id": "FR5-SR5.1",
+    "fr_number": 5,
+    "fr_name": "Restricted Data Flow",
+    "sr_ref": "SR 5.1",
+    "sr_title": "Network segmentation",
+    "text": "¿El IACS está segmentado en zonas de seguridad separadas de la red corporativa/IT?",
+    "guidance": "Firewall entre IT y OT. VLAN separadas para cada zona del Modelo Purdue. DMZ para intercambio de datos.",
+    "sl_relevance": {
+      "1": "Separación lógica IT/OT (VLAN mínimo)",
+      "2": "Firewall con reglas restrictivas entre zonas",
+      "3": "DMZ entre IT y OT para intercambio de datos",
+      "4": "Unidirectional Gateway (Data Diode) para datos críticos"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-5",
+    "nist_sp800_82_ref": "6.2.17",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Diagrama de red con segmentación por zonas",
+      "Reglas de firewall IT/OT",
+      "Configuración de VLANs"
+    ]
+  },
+  {
+    "question_id": "FR5-SR5.2",
+    "fr_number": 5,
+    "fr_name": "Restricted Data Flow",
+    "sr_ref": "SR 5.2",
+    "sr_title": "Zone boundary protection",
+    "text": "¿Se controla y monitorea el tráfico en los límites entre zonas del IACS (conduits)?",
+    "guidance": "Firewalls entre zonas con política de denegación por defecto. Proxy/DMZ para comunicaciones entre niveles.",
+    "sl_relevance": {
+      "1": "Firewall básico entre zonas",
+      "2": "Firewall con inspección de estado + logs",
+      "3": "Next-Gen Firewall con inspección de protocolos OT",
+      "4": "Deep packet inspection OT + anomaly detection"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-5",
+    "nist_sp800_82_ref": "6.2.17",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Reglas de firewall entre zonas",
+      "Logs de tráfico entre zonas",
+      "Configuración de política de denegación por defecto"
+    ]
+  },
+  {
+    "question_id": "FR5-SR5.3",
+    "fr_number": 5,
+    "fr_name": "Restricted Data Flow",
+    "sr_ref": "SR 5.3",
+    "sr_title": "General purpose person-to-person communication restrictions",
+    "text": "¿Se restringe el uso de comunicaciones genéricas (email, chat, navegación web) desde estaciones OT?",
+    "guidance": "Las estaciones de operación e ingeniería OT no deben tener acceso a Internet o email directamente.",
+    "sl_relevance": {
+      "1": "Política documentada de no uso personal en OT",
+      "2": "Bloqueo técnico de servicios no autorizados",
+      "3": "Proxy con whitelist de destinos permitidos",
+      "4": "Air-gap o data diode para sistemas más críticos"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.DS-7",
+    "nist_sp800_82_ref": "6.2.17",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Política de uso de estaciones OT",
+      "Configuración de bloqueo de servicios en estaciones OT"
+    ]
+  },
+  {
+    "question_id": "FR5-SR5.4",
+    "fr_number": 5,
+    "fr_name": "Restricted Data Flow",
+    "sr_ref": "SR 5.4",
+    "sr_title": "Application partitioning",
+    "text": "¿Las aplicaciones críticas del IACS están particionadas para separar funciones de alta y baja seguridad?",
+    "guidance": "Servidores OPC separados por zona. Historian accede a datos de proceso via unidirectional link.",
+    "sl_relevance": {
+      "1": "Separación básica de funciones de operación y administración",
+      "2": "Particionamiento de aplicaciones críticas",
+      "3": "Separación de funciones seguras y no seguras por diseño",
+      "4": "Arquitectura de particionamiento formal validada"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.AC-5",
+    "nist_sp800_82_ref": "6.2.17",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Arquitectura de aplicaciones OT por zona",
+      "Configuración de particionamiento de servidores críticos"
+    ]
+  },
+  {
+    "question_id": "FR6-SR6.1",
+    "fr_number": 6,
+    "fr_name": "Timely Response to Events",
+    "sr_ref": "SR 6.1",
+    "sr_title": "Audit log accessibility",
+    "text": "¿Los logs del IACS están disponibles para revisión oportuna por personal autorizado ante un incidente?",
+    "guidance": "SIEM o sistema centralizado de logs. Acceso en tiempo real para equipo de respuesta a incidentes.",
+    "sl_relevance": {
+      "1": "Logs accesibles manualmente en cada sistema",
+      "2": "Logs centralizados accesibles remotamente",
+      "3": "SIEM con búsqueda en tiempo real",
+      "4": "SIEM con correlación automática + playbooks"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.AE-2",
+    "nist_sp800_82_ref": "6.2.18",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Arquitectura de logging centralizado",
+      "Procedimiento de acceso a logs en incidentes"
+    ]
+  },
+  {
+    "question_id": "FR6-SR6.2",
+    "fr_number": 6,
+    "fr_name": "Timely Response to Events",
+    "sr_ref": "SR 6.2",
+    "sr_title": "Continuous monitoring",
+    "text": "¿Se monitorea continuamente el IACS para detectar incidentes de seguridad?",
+    "guidance": "IDS/IPS industrial (ej. Claroty, Dragos, Nozomi). Alertas en tiempo real. Equipo de respuesta disponible.",
+    "sl_relevance": {
+      "1": "Revisión periódica manual de logs",
+      "2": "IDS básico con alertas por email",
+      "3": "IDS industrial (OT-aware) + SOC básico",
+      "4": "SOC 24/7 con OT-SIEM + threat intelligence"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Detect",
+    "csf_subcategory": "DE.CM-1",
+    "nist_sp800_82_ref": "6.2.18",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Herramientas de monitoreo de seguridad OT",
+      "Procedimiento de respuesta a alertas de seguridad"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.1",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.1",
+    "sr_title": "Denial of service protection",
+    "text": "¿El IACS está protegido contra ataques de denegación de servicio (DoS/DDoS) que puedan afectar la disponibilidad?",
+    "guidance": "Rate limiting en firewalls OT. Redundancia de comunicaciones. Configuración anti-DoS en switches.",
+    "sl_relevance": {
+      "1": "Rate limiting básico en firewall",
+      "2": "Protección anti-DoS en enlaces críticos",
+      "3": "Redundancia de comunicaciones + QoS prioritario para tráfico de control",
+      "4": "Arquitectura resiliente + anti-DDoS + automatic failover"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-9",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Configuración de rate limiting en firewall OT",
+      "Diagrama de redundancia de comunicaciones"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.2",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.2",
+    "sr_title": "Resource management",
+    "text": "¿Se gestiona la utilización de recursos (CPU, memoria, ancho de banda) del IACS para garantizar disponibilidad?",
+    "guidance": "Monitoreo de performance de PLCs/SCADA. Alertas por saturación. Capacity planning documentado.",
+    "sl_relevance": {
+      "1": "Monitoreo básico de disponibilidad de sistemas críticos",
+      "2": "Monitoreo de performance con alertas",
+      "3": "Capacity planning + pruebas de estrés",
+      "4": "Gestión automatizada de recursos + auto-scaling"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.MA-1",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Herramientas de monitoreo de performance OT",
+      "Umbrales de alerta configurados"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.3",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.3",
+    "sr_title": "Control system backup",
+    "text": "¿Se realizan backups regulares de la configuración y programas del IACS (PLCs, HMI, SCADA)?",
+    "guidance": "Backup de lógica ladder/function blocks de PLCs. Backup de proyectos SCADA. Prueba de restauración documentada.",
+    "sl_relevance": {
+      "1": "Backup manual de configuraciones críticas",
+      "2": "Backup automatizado con verificación (semanal mínimo)",
+      "3": "Backup automatizado + prueba de restauración trimestral",
+      "4": "Backup continuo + hot standby para sistemas críticos"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Recover",
+    "csf_subcategory": "RC.RP-1",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Registro de últimos backups de PLCs/HMI/SCADA",
+      "Procedimiento y frecuencia de backup",
+      "Evidencia de prueba de restauración"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.4",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.4",
+    "sr_title": "Control system recovery and reconstitution",
+    "text": "¿Existe un plan documentado y probado para recuperar el IACS ante un incidente o fallo mayor?",
+    "guidance": "Plan de recuperación ante desastres (DRP) específico para OT. RTO y RPO definidos. Pruebas de recuperación.",
+    "sl_relevance": {
+      "1": "Plan de recuperación documentado",
+      "2": "Plan probado anualmente + RTO/RPO definidos",
+      "3": "Plan probado semestralmente + sistemas de repuesto disponibles",
+      "4": "Hot standby + failover automático < RTO objetivo"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Recover",
+    "csf_subcategory": "RC.RP-1",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Plan de recuperación ante desastres OT",
+      "Registro de última prueba de recuperación",
+      "RTO y RPO documentados por sistema"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.5",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.5",
+    "sr_title": "Emergency power",
+    "text": "¿El IACS cuenta con sistemas de alimentación de emergencia (UPS, generadores) para garantizar disponibilidad?",
+    "guidance": "UPS en equipos críticos (PLCs, servidores SCADA, switches). Generador con tiempo de autonomía definido.",
+    "sl_relevance": {
+      "1": "UPS básica en sistemas críticos",
+      "2": "UPS + generador + prueba anual",
+      "3": "Autonomía ≥ 8h con UPS+generador + monitoreo",
+      "4": "Fuentes redundantes + failover automático"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-9",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Inventario de UPS y generadores",
+      "Registro de última prueba de UPS/generador"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.6",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.6",
+    "sr_title": "Network and security configuration settings",
+    "text": "¿Se documentan y controlan las configuraciones de red y seguridad del IACS (gestión de cambios)?",
+    "guidance": "Change management documentado para cambios en firewalls, PLCs, SCADA. Configuraciones base documentadas.",
+    "sl_relevance": {
+      "1": "Documentación de configuraciones base",
+      "2": "Proceso formal de gestión de cambios",
+      "3": "Control de configuración automatizado (CMDB)",
+      "4": "Configuration drift detection en tiempo real"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Identify",
+    "csf_subcategory": "ID.AM-3",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": false,
+    "evidence_prompts": [
+      "Procedimiento de gestión de cambios en OT",
+      "CMDB o inventario de configuraciones base"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.7",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.7",
+    "sr_title": "Least functionality",
+    "text": "¿El IACS opera con el mínimo de funciones y servicios habilitados (hardening)?",
+    "guidance": "Servicios no utilizados deshabilitados en servidores OT. Puertos de red cerrados. Hardening de SO.",
+    "sl_relevance": {
+      "1": "Servicios obvios innecesarios deshabilitados",
+      "2": "Hardening básico de SO (CIS Benchmark Level 1)",
+      "3": "Hardening completo (CIS Benchmark Level 2) + auditoría de puertos",
+      "4": "Hardening continuo + compliance automatizado"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Protect",
+    "csf_subcategory": "PR.IP-1",
+    "nist_sp800_82_ref": "6.2.19",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Resultado de escaneo de puertos en sistemas OT",
+      "Checklist de hardening aplicado"
+    ]
+  },
+  {
+    "question_id": "FR7-SR7.8",
+    "fr_number": 7,
+    "fr_name": "Resource Availability",
+    "sr_ref": "SR 7.8",
+    "sr_title": "Control system component inventory",
+    "text": "¿Existe un inventario completo y actualizado de todos los componentes del IACS?",
+    "guidance": "Inventario de: PLCs, HMIs, servidores SCADA, switches, historians, sensores. Con versión de firmware.",
+    "sl_relevance": {
+      "1": "Inventario manual documentado",
+      "2": "Inventario actualizado semestralmente con versiones",
+      "3": "Inventario automatizado + monitoreo de cambios",
+      "4": "Asset discovery continuo + CMDB integrado"
+    },
+    "answer_options": ["fully", "partially", "no", "na"],
+    "csf_function": "Identify",
+    "csf_subcategory": "ID.AM-1",
+    "nist_sp800_82_ref": "6.2.1",
+    "zone_applicable": true,
+    "evidence_prompts": [
+      "Inventario de activos OT (fecha de última actualización)",
+      "Herramienta de asset discovery si existe"
+    ]
+  }
+]
